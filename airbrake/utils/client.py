@@ -96,19 +96,19 @@ class Client(object):
                     var.set('key', str(key))
                     var.text = str(val)
 
-            if exception:
-                error_em = etree.SubElement(notice_em, 'error')
+        if exception:
+            error_em = etree.SubElement(notice_em, 'error')
 
-                etree.SubElement(error_em, 'class').text = str(exception.__class__.__name__)
-                etree.SubElement(error_em, 'message').text = str(exception)
+            etree.SubElement(error_em, 'class').text = str(exception.__class__.__name__)
+            etree.SubElement(error_em, 'message').text = str(exception)
 
-                backtrace_em = etree.SubElement(error_em, 'backtrace')
+            backtrace_em = etree.SubElement(error_em, 'backtrace')
 
-                for line in tb:
-                    etree.SubElement(backtrace_em, 'line',
-                        file=str(line[0]),
-                        number=str(line[1]),
-                        method=str(line[2]))
+            for line in tb:
+                etree.SubElement(backtrace_em, 'line',
+                    file=str(line[0]),
+                    number=str(line[1]),
+                    method=str(line[2]))
 
         env_em = etree.SubElement(notice_em, 'server-environment')
 
