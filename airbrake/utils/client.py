@@ -42,6 +42,7 @@ class Client(object):
         }
 
         payload = self._generate_xml(exception=exception, request=request)
+        print str(payload)
         req = urllib2.Request(self.url, payload, headers)
         resp = urllib2.urlopen(req, timeout=self.settings['TIMEOUT'])
         status = resp.getcode()
